@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardApp.DashboardController">
+   <children>
+      <StackPane layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="1000.0" stylesheets="@style_dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/bg_2.png" />
+               </image>
+            </ImageView>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="200.0" styleClass="glisser">
+                     <children>
+                        <AnchorPane layoutX="20.0" layoutY="30.0" prefHeight="110.0" prefWidth="200.0" style="-fx-background-color: #3D536C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="1.0" text="Agent 47" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                                 <font>
+                                    <Font name="Calibri Light" size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../AccueilApp/icon/icons8_Water_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="111.0" prefHeight="486.0" prefWidth="105.0" spacing="3.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="111.0">
+                           <children>
+                              <JFXButton ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#Affiche_Rapport" prefHeight="35.0" prefWidth="200.0" text="Créer un rapport" />
+                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" onAction="#Historique" prefHeight="35.0" prefWidth="200.0" text="Historique" />
+                              <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="Activités Réseaux" />
+                              <JFXListView fx:id="Paneau_reseaux" prefHeight="90.0" prefWidth="197.0" />
+                              <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="Gestion Station" />
+                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="86.0" maxWidth="-Infinity" onAction="#Nouveau_reseau" prefHeight="35.0" prefWidth="200.0" text="Nouveau Réseau" />
+                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="240.0" maxWidth="-Infinity" onAction="#modifier_reseau" prefHeight="35.0" prefWidth="200.0" text="Modifier Réseau" />
+                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="278.0" maxWidth="-Infinity" onAction="#supprimer_reseau" prefHeight="35.0" prefWidth="200.0" text="Supprimer Réseau" />
+                              <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="A propos" />
+                              <JFXButton ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#infos" prefHeight="35.0" prefWidth="200.0" text="Infos" />
+                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="382.0" maxWidth="-Infinity" onAction="#reglages" prefHeight="35.0" prefWidth="200.0" text="Réglages" />
+                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="420.0" maxWidth="-Infinity" onAction="#Deconnexion" prefHeight="40.0" prefWidth="200.0" text="Déconnexion" />
+                           </children>
+                           <padding>
+                              <Insets right="1.0" top="1.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minWidth="800.0" prefHeight="595.0" prefWidth="1000.0">
+                     <children>
+                        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane fx:id="Rapport_page" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="600.0">
+                                 <children>
+                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="596.0" style="-fx-border-color: #C7CACD; -fx-border-width: 1 0 1 0;" styleClass="glisser" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <children>
+                                          <HBox layoutX="4.0" layoutY="3.0" spacing="8.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
+                                             <children>
+                                                <JFXButton contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Nouveau_rapport" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 20;" text=" ">
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/icons8_Add_File_64px_1.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btn_add_line" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Add_new_line" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 20;" text=" ">
+                                                   <graphic>
+                                                      <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/icons8_Add_List_48px.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="Num_dossier" layoutX="46.0" layoutY="8.0" text="N° 89251" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="0.0" />
+                                          <HBox alignment="CENTER_LEFT" layoutX="116.0" layoutY="8.0" prefHeight="17.0" prefWidth="212.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label fx:id="date" prefWidth="200.0" text="Mercredi 20 novembre 2019    15h19">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin></Label>
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="nom_reseau" alignment="CENTER" layoutX="401.0" layoutY="8.0" maxWidth="-Infinity" prefHeight="17.0" prefWidth="69.0" text="Bimsun" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                                          <JFXButton contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#close_rapport" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 20;" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0">
+                                             <graphic>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../AccueilApp/icon/icons8_Delete_64px_1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </AnchorPane>
+                                    <VBox fx:id="rapport" alignment="TOP_CENTER" layoutX="2.0" layoutY="54.0" minHeight="-Infinity" prefHeight="560.0" spacing="3.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="38.0">
+                                       <children>
+                                          <TableView fx:id="Pression_info_1" editable="true" focusTraversable="false" prefHeight="180.0" prefWidth="200.0">
+                                            <columns>
+                                              <TableColumn fx:id="N_1" prefWidth="31.0" text="N°" />
+                                              <TableColumn fx:id="Pression_Ar" prefWidth="112.0" text="Pression (Kg/cm²)&#10;     d'Arrivée" />
+                                                <TableColumn fx:id="Pression_Dis" prefWidth="112.0" text="Pression (Kg/cm²)&#10;de Distribution" />
+                                                <TableColumn fx:id="GMP_1" prefWidth="50.0" text="GMP 1" />
+                                                <TableColumn fx:id="GMP_2" prefWidth="50.0" text="GMP 2" />
+                                                <TableColumn fx:id="GMP_3" prefWidth="50.0" text="GMP 3" />
+                                                <TableColumn fx:id="GMP_4" prefWidth="50.0" text="GMP 4" />
+                                                <TableColumn fx:id="GMP_5" prefWidth="50.0" text="GMP 5" />
+                                                <TableColumn fx:id="Heure_Pression_1" prefWidth="88.0" text="Heures" />
+                                            </columns>
+                                          </TableView>
+                                          <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="593.0" styleClass="glisser" text="Moyenne Générale" />
+                                          <TableView fx:id="Pression_moyenne" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="598.0">
+                                             <columns>
+                                                <TableColumn fx:id="Press_Ar_Max" prefWidth="62.0" text="Press. Arr.&#10;    Max" />
+                                                <TableColumn fx:id="Press_Ar_Min" prefWidth="62.0" text="Press. Arr.&#10;    Min" />
+                                                <TableColumn fx:id="Press_Cum_Ar" prefWidth="70.0" text="Press. Cum.&#10;      Arr." />
+                                                <TableColumn fx:id="Press_Moy_Ar" prefWidth="70.0" text="Press. Moy.&#10;      Arr." />
+                                                <TableColumn fx:id="Press_Dr_Max" prefWidth="62.0" text="Press. Dist.&#10;    Max" />
+                                                <TableColumn fx:id="Press_Dr_Min" prefWidth="62.0" text="Press. Dist.&#10;    Min" />
+                                                <TableColumn fx:id="Press_Cum_Dr" prefWidth="70.0" text="Press. Cum.&#10;      Dist." />
+                                                <TableColumn fx:id="Press_Moy_Dr" prefWidth="70.0" text="Press. Moy.&#10;      Dist." />
+                                                <TableColumn fx:id="Livraison" prefWidth="68.0" text="Livraison" />
+                                             </columns>
+                                          </TableView>
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="596.0">
+                                             <children>
+                                                <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="593.0" styleClass="glisser" text="Marche et Justification de l'arret du Groupe Moto Pompe (GMP)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <JFXButton fx:id="btn_add_justif" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Add_new_Justif" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 20;" text=" " AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/icons8_Add_List_48px.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane minHeight="-Infinity" prefHeight="235.0" prefWidth="596.0">
+                                             <children>
+                                                <JFXButton ellipsisString="" focusTraversable="false" layoutX="123.0" layoutY="124.0" maxWidth="-Infinity" onAction="#Imprimer" prefHeight="35.0" prefWidth="200.0" text="Imprimer" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                                                <JFXButton ellipsisString="" focusTraversable="false" layoutX="25.0" layoutY="135.0" maxWidth="-Infinity" onAction="#Enreigistrer" prefHeight="35.0" prefWidth="200.0" text="Enreigistrer" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+                                                <TableView fx:id="Justification" focusTraversable="false" layoutX="311.0" layoutY="10.0" prefHeight="165.0" prefWidth="596.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="N_J" prefWidth="31.0" text="N°" />
+                                                      <TableColumn fx:id="GMP" prefWidth="75.0" text="GMP" />
+                                                      <TableColumn fx:id="Raison" prefWidth="182.0" text="Raisons" />
+                                                      <TableColumn fx:id="Debut" prefWidth="102.0" text="Debut" />
+                                                      <TableColumn fx:id="Fin" prefWidth="102.0" text="Fin" />
+                                                      <TableColumn fx:id="Total" prefWidth="102.0" text="Total" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="Historique" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="600.0" visible="false">
+                                 <children>
+                                    <Label alignment="CENTER" ellipsisString="" prefHeight="35.0" prefWidth="593.0" styleClass="glisser" text="Historique" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
+                                    <TableView fx:id="table_rapport" focusTraversable="false" prefHeight="80.0" prefWidth="598.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                       <columns>
+                                          <TableColumn fx:id="N_Rap" prefWidth="33.33332824707031" text="N° " />
+                                          <TableColumn fx:id="N_Rapport" prefWidth="140.66665649414062" text="N° Rapport" />
+                                          <TableColumn fx:id="Reseau_activité" minWidth="0.0" prefWidth="214.0" text="Réseau d'Activité" />
+                                          <TableColumn fx:id="Date_Rap" prefWidth="208.0" text="Date" />
+                                       </columns>
+                                    </TableView>
+                                    <JFXButton fx:id="btn_ouvr_rap" ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#Ouvrir_rapport" prefHeight="35.0" prefWidth="200.0" text="Ouvrir" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="17.0" />
+                                    <JFXButton fx:id="btn_sup_rap" ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#Supprimer_rapport" prefHeight="35.0" prefWidth="200.0" text="Supprimer" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="17.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="2.0" right="2.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                        <AnchorPane layoutX="43.0" layoutY="43.0" prefHeight="595.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="28.0" layoutY="75.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #3D536C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="1.0" text="Usine : Djili" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                       <font>
+                                          <Font name="Calibri Light" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <VBox layoutX="50.0" layoutY="162.0" prefHeight="200.0" prefWidth="100.0" styleClass="glisser" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                 <children>
+                                    <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="Messages" />
+                                    <JFXListView prefHeight="405.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="1.0" right="1.0" />
+                                       </VBox.margin>
+                                    </JFXListView>
+                                    <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" styleClass="aucun_msg" text="Aucun message">
+                                       <VBox.margin>
+                                          <Insets left="1.0" right="1.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+      <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #3D536C; -fx-border-color: #C7CACD; -fx-border-width: 0 0 1 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="Bar" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="2.0" layoutX="179.0" prefHeight="35.0" prefWidth="801.0" text="H20 Provider" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../AccueilApp/icon/icons8_Water_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <JFXButton contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Exit" prefHeight="20.0" prefWidth="20.0" style="-fx-background-radius: 20;" styleClass="jfx-button" stylesheets="@style_dashboard.css" text=" " AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/icons8_Delete_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

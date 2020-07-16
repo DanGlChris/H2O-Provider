@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane stylesheets="@../DashboardApp/style_dashboard.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AccueilApp.AccueilController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../Images/bg_2.png" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #3D536C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="Bar" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="2.0" prefHeight="30.0" text="H20 Provider" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icon/icons8_Water_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <JFXButton contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Exit" prefHeight="20.0" prefWidth="20.0" style="-fx-background-radius: 20;" text=" " AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/icons8_Delete_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0">
+         <image>
+            <Image url="@../Images/Plan%20de%20travail%2012.png" />
+         </image>
+      </ImageView>
+      <JFXButton focusTraversable="false" layoutX="235.0" layoutY="216.0" onAction="#Connection" prefHeight="27.0" prefWidth="130.0" text="Connection" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton focusTraversable="false" layoutX="235.0" layoutY="150.0" onAction="#Nouvel_Agent" prefHeight="27.0" prefWidth="130.0" text="Créer un Agent" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="220.0">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-radius: 0 0 20 0;" styleClass="glisser" text="Bienvenue" AnchorPane.topAnchor="35.0" />
+   </children>
+</AnchorPane>

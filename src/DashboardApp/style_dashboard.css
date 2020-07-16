@@ -1,0 +1,25 @@
+.glisser{
+    -fx-background-color: white;
+}
+
+.jfx-button {
+     -jfx-button-type: RAISED;
+     -fx-background-color: rgba(197, 200, 203, 0.8);
+     -fx-background-radius: 1;
+     -fx-text-fill: black;
+}
+.jfx-button:hover{    
+     -fx-background-color: #838587;
+}
+.aucun_msg{
+    -fx-background-color: #E46D6E;
+}
+.table-view .column-header .label{
+    -fx-font-weight: bold;
+    -fx-font-size: 8pt;
+    -fx-text-fill: #3A4F67;
+    -fx-alignment: center;
+}
+.table-cell {
+    -fx-alignment: center;
+}
