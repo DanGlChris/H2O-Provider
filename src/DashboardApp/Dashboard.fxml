@@ -29,7 +29,7 @@
                      <children>
                         <AnchorPane layoutX="20.0" layoutY="30.0" prefHeight="110.0" prefWidth="200.0" style="-fx-background-color: #3D536C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="1.0" text="Agent 47" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                              <Label fx:id="Agent_name" alignment="CENTER" layoutX="1.0" text="Agent 47" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                                  <font>
                                     <Font name="Calibri Light" size="18.0" />
                                  </font>

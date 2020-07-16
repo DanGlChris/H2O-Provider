@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -29,6 +30,7 @@ public interface R {
     Map<String, Stage> stages = new HashMap<>();
     Map<String, Scene> scenes = new HashMap<>();
     Map<String, Station> stations = new HashMap<>();
+    Map<String, SimpleStringProperty> string_properties = new HashMap<>();
     
     ObservableMap<String, Rapport> List_Rapport = FXCollections.observableHashMap();
     

@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ import javafx.scene.control.Label;
 public class ConnectionController implements Initializable {
     private double xoffset, yoffset;
     private Timeline time ;
+    private SimpleStringProperty Agent_name = new SimpleStringProperty("Agent 47");
     @FXML
     public Label Message;
     @FXML
@@ -51,6 +53,8 @@ public class ConnectionController implements Initializable {
                 Data.R.loginModel.getRapport(id_station).forEach((t, u) -> {
                     Data.R.List_Rapport.put(t, u);
                 });
+                Data.R.string_properties.get(Data.S.Str_Prop_Agent_Name).set(this.Username.getText());
+                
                 Username.clear();
                 password.clear();
                 this.Message.setText("");

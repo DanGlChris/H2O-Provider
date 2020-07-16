@@ -22,6 +22,8 @@ import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
@@ -67,6 +69,9 @@ public class DashboardController implements Initializable {
     private String Num_Rapport_String;
     private String Reseau_actif = "";
     private boolean block_reseau_set = false;
+    
+    @FXML
+    public Label Agent_name;
     
     @FXML
     private JFXListView<Reseau> Paneau_reseaux;
@@ -369,6 +374,10 @@ public class DashboardController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SimpleStringProperty Agent_Name = new SimpleStringProperty();
+        Agent_name.textProperty().bind(Agent_Name);
+        Data.R.string_properties.put(Data.S.Str_Prop_Agent_Name, Agent_Name);    //permet de pouvoir identifier le nom de l'agent exterieurement
+        
         Rapport_page.visibleProperty().set(true);
         Historique.visibleProperty().set(false);
         Num_dossier.visibleProperty().bind(visibility_of_new_rapport_property);
@@ -380,6 +389,10 @@ public class DashboardController implements Initializable {
         btn_ouvr_rap.disableProperty().bindBidirectional(btn_sup_rap.disableProperty());
         btn_ouvr_rap.disableProperty().set(true);
         
+        /**
+         * 
+         * cette partie permet de rafraichir la tableview apres avoir changer d'utilisateur
+         */
         data_rapport.addAll(Data.R.List_Rapport.values());
         Data.R.List_Rapport.addListener(new  MapChangeListener<String, Rapport>() {
             @Override

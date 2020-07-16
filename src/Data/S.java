@@ -10,6 +10,9 @@ package Data;
  * @author HP
  */
 public interface S {
+    //StringPropretie
+    String Str_Prop_Agent_Name = "Agent_Name";
+    
     //scene
     String Scne_Accueil = "Accueil";
     String Scne_Connexion = "Connexion";

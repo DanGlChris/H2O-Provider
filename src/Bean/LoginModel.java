@@ -307,6 +307,7 @@ public class LoginModel {
     public ObservableMap<String, Rapport>  getRapport(String Id_statiton){        
         PreparedStatement pr = null, pr_2 = null;
         ResultSet rs = null, rs_2 = null;
+        List_Rapport.clear();
         String sql = "SELECT * FROM Rapport WHERE ID_Station = ?";
         try{    
             // Selection des rapport par num de rapport
