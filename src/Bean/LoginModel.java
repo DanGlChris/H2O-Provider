@@ -303,7 +303,7 @@ public class LoginModel {
     }
     
     
-    private ObservableMap<String, Rapport> List_Rapport = FXCollections.emptyObservableMap();
+    private ObservableMap<String, Rapport> List_Rapport = FXCollections.observableHashMap();
     public ObservableMap<String, Rapport>  getRapport(String Id_statiton){        
         PreparedStatement pr = null, pr_2 = null;
         ResultSet rs = null, rs_2 = null;
@@ -390,7 +390,7 @@ public class LoginModel {
                 pr_2.close();
                 rs_2.close();
                 
-                
+                System.out.println("##### " + rapport.getN_Rapport() + " uploaded");
                 List_Rapport.put(rapport.getN_Rapport(), rapport);
                 
             }

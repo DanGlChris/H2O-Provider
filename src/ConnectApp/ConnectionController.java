@@ -48,7 +48,9 @@ public class ConnectionController implements Initializable {
                     }
                 });
                 Data.R.List_Rapport.clear();
-                Data.R.List_Rapport.putAll(Data.R.loginModel.getRapport(id_station));
+                Data.R.loginModel.getRapport(id_station).forEach((t, u) -> {
+                    Data.R.List_Rapport.put(t, u);
+                });
                 Username.clear();
                 password.clear();
                 this.Message.setText("");

@@ -30,7 +30,7 @@ public interface R {
     Map<String, Scene> scenes = new HashMap<>();
     Map<String, Station> stations = new HashMap<>();
     
-    ObservableMap<String, Rapport> List_Rapport = FXCollections.emptyObservableMap();
+    ObservableMap<String, Rapport> List_Rapport = FXCollections.observableHashMap();
     
     List<Reseau> Reseaux = new ArrayList<>();
     ObservableList<Reseau> Current_Reseau = FXCollections.observableArrayList();
