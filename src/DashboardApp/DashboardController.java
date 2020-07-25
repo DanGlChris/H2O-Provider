@@ -204,6 +204,9 @@ public class DashboardController implements Initializable {
     private JFXButton btn_sup_rap;
     
     @FXML
+    public JFXButton Btn_print;
+    
+    @FXML
     private Label Bar;    
     
     @FXML
@@ -249,14 +252,16 @@ public class DashboardController implements Initializable {
         
         Num_Rapport_String = String.format("O%s%05d", Data.R.Current_Reseau.get(0).getId_Station(), Num_rapport);
         while(Data.R.List_Rapport.keySet().contains(Num_Rapport_String)){
-            Num_Rapport_String = String.format("OO%s%05d", Data.R.Current_Reseau.get(0).getId_Station(), Integer.valueOf(Num_Rapport_String.substring(1))+1);            
+            Num_Rapport_String = String.format("O%s%05d", Data.R.Current_Reseau.get(0).getId_Station(), Integer.valueOf(Num_Rapport_String.substring(1))+1);            
         }
         Num_dossier.setText("N° " + Num_Rapport_String);
+        System.out.println("### " + Num_Rapport_String);
         visibility_of_new_rapport_property.setValue(true);
         date.textProperty().set(new SimpleDateFormat("EEEEEEEE dd MMMMMMMMM yyyy '\t'HH'h'mm ",
             Locale.FRANCE).format(new Date()));
         data.clear();
         data_justification.clear();
+        Btn_print.disableProperty().set(true);
     }
     @FXML
     public void Affiche_Rapport(ActionEvent event) {
@@ -337,6 +342,7 @@ public class DashboardController implements Initializable {
         visibility_of_new_rapport_property.setValue(true);
         Rapport_page.visibleProperty().set(true);
         Historique.visibleProperty().set(false);  
+        Btn_print.disableProperty().set(false);
         
     }
     
@@ -388,6 +394,7 @@ public class DashboardController implements Initializable {
         btn_add_justif.disableProperty().bind(btn_add_line.disabledProperty());
         btn_ouvr_rap.disableProperty().bindBidirectional(btn_sup_rap.disableProperty());
         btn_ouvr_rap.disableProperty().set(true);
+        Btn_print.disableProperty().set(true);
         
         /**
          * 
