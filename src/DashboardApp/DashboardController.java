@@ -207,6 +207,9 @@ public class DashboardController implements Initializable {
     public JFXButton Btn_print;
     
     @FXML
+    public JFXButton Btn_Enreigistrer;
+    
+    @FXML
     private Label Bar;    
     
     @FXML
@@ -261,7 +264,11 @@ public class DashboardController implements Initializable {
             Locale.FRANCE).format(new Date()));
         data.clear();
         data_justification.clear();
-        Btn_print.disableProperty().set(true);
+        /**
+         * Button Configuration by changing reseau selector
+         */
+        Btn_print.disableProperty().set(true);        
+        
     }
     @FXML
     public void Affiche_Rapport(ActionEvent event) {
@@ -395,6 +402,7 @@ public class DashboardController implements Initializable {
         btn_ouvr_rap.disableProperty().bindBidirectional(btn_sup_rap.disableProperty());
         btn_ouvr_rap.disableProperty().set(true);
         Btn_print.disableProperty().set(true);
+        Btn_Enreigistrer.disableProperty().set(true);
         
         /**
          * 
@@ -426,11 +434,13 @@ public class DashboardController implements Initializable {
                 newValue.Active();
                 Reseau_actif = newValue.getNom();
                 nom_reseau.setText(Reseau_actif);
+                Btn_Enreigistrer.setDisable(false);
             }
             else{
                 Paneau_reseaux.getItems().forEach(x-> {
                     x.Desactive();
-                });                
+                });
+                Btn_Enreigistrer.setDisable(true);
             }
         });
         Bar.setOnMousePressed(e-> {

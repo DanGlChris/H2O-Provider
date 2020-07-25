@@ -161,7 +161,7 @@
                                           <AnchorPane minHeight="-Infinity" prefHeight="235.0" prefWidth="596.0">
                                              <children>
                                                 <JFXButton fx:id="Btn_print" ellipsisString="" focusTraversable="false" layoutX="123.0" layoutY="124.0" maxWidth="-Infinity" onAction="#Imprimer" prefHeight="35.0" prefWidth="200.0" text="Imprimer" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-                                                <JFXButton ellipsisString="" focusTraversable="false" layoutX="25.0" layoutY="135.0" maxWidth="-Infinity" onAction="#Enreigistrer" prefHeight="35.0" prefWidth="200.0" text="Enreigistrer" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+                                                <JFXButton fx:id="Btn_Enreigistrer" ellipsisString="" focusTraversable="false" layoutX="25.0" layoutY="135.0" maxWidth="-Infinity" onAction="#Enreigistrer" prefHeight="35.0" prefWidth="200.0" text="Enreigistrer" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
                                                 <TableView fx:id="Justification" focusTraversable="false" layoutX="311.0" layoutY="10.0" prefHeight="165.0" prefWidth="596.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <columns>
                                                       <TableColumn fx:id="N_J" prefWidth="31.0" text="N°" />
