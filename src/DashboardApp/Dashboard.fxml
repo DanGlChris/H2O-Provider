@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -52,7 +53,7 @@
                               <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="Gestion Station" />
                               <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="86.0" maxWidth="-Infinity" onAction="#Nouveau_reseau" prefHeight="35.0" prefWidth="200.0" text="Nouveau Réseau" />
                               <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="240.0" maxWidth="-Infinity" onAction="#modifier_reseau" prefHeight="35.0" prefWidth="200.0" text="Modifier Réseau" />
-                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="278.0" maxWidth="-Infinity" onAction="#supprimer_reseau" prefHeight="35.0" prefWidth="200.0" text="Supprimer Réseau" />
+                              <JFXButton fx:id="btn_Supprimer_reseau" ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="278.0" maxWidth="-Infinity" onAction="#supprimer_reseau" prefHeight="35.0" prefWidth="200.0" text="Supprimer Réseau" />
                               <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="A propos" />
                               <JFXButton ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#infos" prefHeight="35.0" prefWidth="200.0" text="Infos" />
                               <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="382.0" maxWidth="-Infinity" onAction="#reglages" prefHeight="35.0" prefWidth="200.0" text="Réglages" />
@@ -68,7 +69,7 @@
                      <children>
                         <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane fx:id="Rapport_page" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="600.0">
+                              <AnchorPane fx:id="Rapport_page" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="600.0" visible="false">
                                  <children>
                                     <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="596.0" style="-fx-border-color: #C7CACD; -fx-border-width: 1 0 1 0;" styleClass="glisser" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <children>
@@ -103,7 +104,7 @@
                                                    </HBox.margin></Label>
                                              </children>
                                           </HBox>
-                                          <Label fx:id="nom_reseau" alignment="CENTER" layoutX="401.0" layoutY="8.0" maxWidth="-Infinity" prefHeight="17.0" prefWidth="69.0" text="Bimsun" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="nom_reseau" alignment="CENTER" layoutX="401.0" layoutY="2.0" maxWidth="-Infinity" prefHeight="33.0" prefWidth="100.0" text="Aucun Réseau" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="1.0" />
                                           <JFXButton contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#close_rapport" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 20;" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0">
                                              <graphic>
                                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -196,13 +197,44 @@
                                     <Insets left="2.0" right="2.0" />
                                  </padding>
                               </AnchorPane>
+                              <AnchorPane fx:id="Nouveau_Res" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="600.0">
+                                 <children>
+                                    <Label alignment="CENTER" ellipsisString="" prefHeight="35.0" prefWidth="593.0" styleClass="glisser" text="Nouveau Réseau" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
+                                    <AnchorPane layoutX="4.0" prefHeight="150.0" prefWidth="596.0" styleClass="glisser" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                       <children>
+                                          <Label layoutX="191.0" layoutY="38.0" text="Station ID :">
+                                             <font>
+                                                <Font name="Calibri Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="163.0" layoutY="91.0" text="Nom du Réseau:">
+                                             <font>
+                                                <Font name="Calibri Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="TxtF_Id_Station" disable="true" layoutX="257.0" layoutY="34.0" />
+                                          <TextField fx:id="TxtF_Nom_Station" layoutX="257.0" layoutY="87.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <JFXButton fx:id="btn_creer" ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#Creer_Reseau" prefHeight="35.0" prefWidth="200.0" text="Créer" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="17.0" />
+                                    <Label fx:id="Message_Reseau" alignment="CENTER" layoutX="170.0" layoutY="204.0" prefHeight="40.0" prefWidth="270.0" textAlignment="CENTER" textFill="RED">
+                                       <font>
+                                          <Font name="Calibri Light" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXButton fx:id="btn_Modifier_Res" ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#Set_Reseau" prefHeight="35.0" prefWidth="200.0" text="Modifier" visible="false" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="17.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="2.0" right="2.0" />
+                                 </padding>
+                              </AnchorPane>
                            </children>
                         </StackPane>
                         <AnchorPane layoutX="43.0" layoutY="43.0" prefHeight="595.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="28.0" layoutY="75.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #3D536C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label alignment="CENTER" layoutX="1.0" text="Usine : Djili" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                    <Label alignment="CENTER" layoutX="1.0" text="Usine : N'djili" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                                        <font>
                                           <Font name="Calibri Light" size="18.0" />
                                        </font>

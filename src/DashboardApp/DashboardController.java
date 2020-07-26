@@ -15,7 +15,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.Observable;
@@ -69,7 +71,8 @@ public class DashboardController implements Initializable {
     private String Num_Rapport_String;
     private String Reseau_actif = "";
     private boolean block_reseau_set = false;
-    
+    private List<AnchorPane> Page_List = new ArrayList<>();
+            
     @FXML
     public Label Agent_name;
     
@@ -183,15 +186,6 @@ public class DashboardController implements Initializable {
     private Label nom_reseau;
     
     @FXML
-    private VBox rapport;
-    
-    @FXML
-    private AnchorPane Rapport_page;
-    
-    @FXML
-    private AnchorPane Historique;
-    
-    @FXML
     private JFXButton btn_add_line;
     
     @FXML
@@ -204,47 +198,64 @@ public class DashboardController implements Initializable {
     private JFXButton btn_sup_rap;
     
     @FXML
+    private Label Bar; 
+    
+    /*
+    Section: Page    
+    */    
+    
+    @FXML
+    private VBox rapport;
+    
+    @FXML
+    private AnchorPane Rapport_page;
+    
+    @FXML
+    private AnchorPane Historique;
+    
+    @FXML
+    private AnchorPane Nouveau_Res;
+    
+    /*
+    Section: New Rapport
+    */
+    @FXML
     public JFXButton Btn_print;
     
     @FXML
     public JFXButton Btn_Enreigistrer;
     
+    /*
+    Section: Gestion reseau
+    */
     @FXML
-    private Label Bar;    
+    public JFXButton btn_Supprimer_reseau;
     
     @FXML
-    public void Add_new_line(ActionEvent event) {
-        Water_reseau item = new Water_reseau();
-        item.N.setValue(Pression_info_1.getItems().size()+1); // problem : Value a supprimer
-        item.Pression_Arrivé.setValue(0);
-        item.Pression_Distr.setValue(0);
-        item.GMP_1.setValue(0);
-        item.GMP_2.setValue(0);
-        item.GMP_3.setValue(0);
-        item.GMP_4.setValue(0);
-        item.GMP_5.setValue(0);
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss"); 
-        item.Heure.setValue(formatter.format(date));
-        data.add(item);
-    }
+    public JFXButton btn_creer;  
+    
     @FXML
-    public void Add_new_Justif(ActionEvent event){
-        Justification item = new Justification();
-        item.N.setValue(Justification.getItems().size()+1);
-        data_justification.add(item);
-    }
+    public JFXButton btn_Modifier_Res;
+    
+    @FXML
+    public Label Message_Reseau;    
+
+    @FXML
+    public TextField TxtF_Id_Station;
+
+    @FXML
+    public TextField TxtF_Nom_Station;
+    
+    
     @FXML
     public void Deconnexion(ActionEvent event) {
-        Rapport_page.visibleProperty().set(false);
-        Historique.visibleProperty().set(false);
+        Hide_All_Page();
         Data.M.Change_Stage(Data.R.stages.get(Data.S.Stge_Dashboard), Data.R.stages.get(Data.S.Scne_Accueil), true);
-    }
+    }    
 
     @FXML
     public void Historique(ActionEvent event) {
-        Rapport_page.visibleProperty().set(false);
-        Historique.visibleProperty().set(true);
+        Hide_All_Page_except(Historique);
     }
 
     @FXML
@@ -272,10 +283,32 @@ public class DashboardController implements Initializable {
     }
     @FXML
     public void Affiche_Rapport(ActionEvent event) {
-        Rapport_page.visibleProperty().set(true);
-        Historique.visibleProperty().set(false);
+        Hide_All_Page_except(Rapport_page);
         close_rapport(event);
         
+    }    
+    
+    @FXML
+    public void Add_new_line(ActionEvent event) {
+        Water_reseau item = new Water_reseau();
+        item.N.setValue(Pression_info_1.getItems().size()+1); // problem : Value a supprimer
+        item.Pression_Arrivé.setValue(0);
+        item.Pression_Distr.setValue(0);
+        item.GMP_1.setValue(0);
+        item.GMP_2.setValue(0);
+        item.GMP_3.setValue(0);
+        item.GMP_4.setValue(0);
+        item.GMP_5.setValue(0);
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss"); 
+        item.Heure.setValue(formatter.format(date));
+        data.add(item);
+    }
+    @FXML
+    public void Add_new_Justif(ActionEvent event){
+        Justification item = new Justification();
+        item.N.setValue(Justification.getItems().size()+1);
+        data_justification.add(item);
     }
     
     @FXML
@@ -304,9 +337,8 @@ public class DashboardController implements Initializable {
             Data.R.loginModel.AddRapport(Data.R.List_Rapport.get(Num_Rapport_String));
             
         } 
-        Rapport_page.visibleProperty().set(false);
         visibility_of_new_rapport_property.setValue(false);
-        Historique.visibleProperty().set(true);   
+        Hide_All_Page_except(Historique);
     }
     
     @FXML
@@ -347,15 +379,9 @@ public class DashboardController implements Initializable {
         date.textProperty().set(rap.getDate());
         nom_reseau.setText(Reseau_actif);        
         visibility_of_new_rapport_property.setValue(true);
-        Rapport_page.visibleProperty().set(true);
-        Historique.visibleProperty().set(false);  
+        Hide_All_Page_except(Rapport_page);
         Btn_print.disableProperty().set(false);
         
-    }
-    
-    @FXML
-    public void Nouveau_reseau(ActionEvent event) {
-
     }
     @FXML
     public void close_rapport(ActionEvent event){ 
@@ -363,21 +389,75 @@ public class DashboardController implements Initializable {
         data.clear();
         data_justification.clear();
     }
+    private boolean pass_reseau_name = true;
+    @FXML
+    public void Creer_Reseau(ActionEvent event){
+        Message_Reseau.setText("");
+        pass_reseau_name = true;
+        for(Reseau res: Data.R.Reseaux){
+            if(res.getNom().toUpperCase().equals(TxtF_Nom_Station.getText().toUpperCase())){
+                Message_Reseau.setText(Data.S.Str_Message_error_reseau);
+                pass_reseau_name = false;
+                break;
+            }
+        }
+        /**
+         * save on DataBase and Current view table
+         */
+        if(pass_reseau_name){
+            System.out.println("#### je suis passé");
+            Reseau new_reseau = new Reseau(Data.R.string_properties.get(Data.S.Str_Prop_Current_Id_Station).get(),
+                    TxtF_Nom_Station.getText().toUpperCase().charAt(0)+TxtF_Nom_Station.getText().toLowerCase().substring(1));
+            new_reseau.Desactive();
+            Data.R.loginModel.addReseau(new_reseau);
+            Data.R.Current_Reseau.add(new_reseau);
+            Data.R.Reseaux.add(new_reseau);
+            
+            Message_Reseau.setText(Data.S.Str_Message_new_reseau);
+            TxtF_Nom_Station.clear();
+        }
+        
+        
+    }
+    
+    @FXML
+    public void Nouveau_reseau(ActionEvent event) {
+        Hide_All_Page_except(Nouveau_Res);
+        btn_creer.setVisible(true);
+        btn_Modifier_Res.setVisible(false);
 
+    }
+    
+    private Reseau removable_reseau;
+    /**
+     * cette methode permet de remove le reseau de 
+     * la liste des reseau existant
+     * @param event 
+     */
+    @FXML
+    public void supprimer_reseau(ActionEvent event) {
+        removable_reseau = Paneau_reseaux.getSelectionModel().selectedItemProperty().get();
+        Data.R.loginModel.Remove_Reseau(removable_reseau);
+        Data.R.Reseaux.remove(removable_reseau);
+        Data.R.Current_Reseau.remove(removable_reseau);
+    }
+    @FXML
+    public void modifier_reseau(ActionEvent event) {
+        btn_creer.setVisible(false);
+        btn_Modifier_Res.setVisible(true);
+    }
+    
+    @FXML
+    public void Set_Reseau(ActionEvent event) {
+
+    }
+    
     @FXML
     public void infos(ActionEvent event) {
 
     }
     @FXML
-    public void modifier_reseau(ActionEvent event) {
-
-    }
-    @FXML
     public void reglages(ActionEvent event) {
-
-    }
-    @FXML
-    public void supprimer_reseau(ActionEvent event) {
 
     }
     @FXML
@@ -391,8 +471,6 @@ public class DashboardController implements Initializable {
         Agent_name.textProperty().bind(Agent_Name);
         Data.R.string_properties.put(Data.S.Str_Prop_Agent_Name, Agent_Name);    //permet de pouvoir identifier le nom de l'agent exterieurement
         
-        Rapport_page.visibleProperty().set(true);
-        Historique.visibleProperty().set(false);
         Num_dossier.visibleProperty().bind(visibility_of_new_rapport_property);
         date.visibleProperty().bind(visibility_of_new_rapport_property);
         nom_reseau.visibleProperty().bind(visibility_of_new_rapport_property);
@@ -401,8 +479,21 @@ public class DashboardController implements Initializable {
         btn_add_justif.disableProperty().bind(btn_add_line.disabledProperty());
         btn_ouvr_rap.disableProperty().bindBidirectional(btn_sup_rap.disableProperty());
         btn_ouvr_rap.disableProperty().set(true);
+        btn_Modifier_Res.disableProperty().set(true);
+        btn_Supprimer_reseau.disableProperty().set(true);
         Btn_print.disableProperty().set(true);
         Btn_Enreigistrer.disableProperty().set(true);
+        
+        btn_creer.disableProperty().bind(TxtF_Nom_Station.textProperty().isEmpty());
+        btn_creer.setVisible(true);
+        btn_Modifier_Res.setVisible(false);
+        
+        TxtF_Id_Station.textProperty().bind(Data.R.string_properties.get(Data.S.Str_Prop_Current_Id_Station));
+        Page_List.add(Rapport_page);
+        Page_List.add(Historique);
+        Page_List.add(Nouveau_Res);
+       
+        Hide_All_Page_except(Rapport_page);
         
         /**
          * 
@@ -435,12 +526,16 @@ public class DashboardController implements Initializable {
                 Reseau_actif = newValue.getNom();
                 nom_reseau.setText(Reseau_actif);
                 Btn_Enreigistrer.setDisable(false);
+                btn_Supprimer_reseau.setDisable(false);
+                btn_Modifier_Res.setDisable(false);
             }
             else{
                 Paneau_reseaux.getItems().forEach(x-> {
                     x.Desactive();
                 });
                 Btn_Enreigistrer.setDisable(true);
+                btn_Supprimer_reseau.setDisable(true);
+                btn_Modifier_Res.setDisable(false); 
             }
         });
         Bar.setOnMousePressed(e-> {
@@ -582,6 +677,25 @@ public class DashboardController implements Initializable {
         N_Rapport.setCellValueFactory(new PropertyValueFactory<Rapport, String>("N_Rapport"));
         Reseau_activité.setCellValueFactory(new PropertyValueFactory<Rapport, String>("Reseau_Act"));
         Date_Rap.setCellValueFactory(new PropertyValueFactory<Rapport, String>("Date"));
+    }
+    /**
+     * cette methode permet de cacher toutes les pages
+     */
+    private void Hide_All_Page(){
+        for(AnchorPane p: Page_List){
+            p.visibleProperty().set(false);
+        }
+        
+        Message_Reseau.setText("");
+    }
+    /**
+     * cette methode permet d'afficher qu'une page
+     * du dashboard sauf celui du parametre
+     * @param page 
+     */
+     private void Hide_All_Page_except(AnchorPane page){
+        Hide_All_Page();
+        page.visibleProperty().set(true);
     }
     public void actualiser_calcule(){
         water_moyenne.Press_Ar_Max.set(getPress_Ar_Max());
@@ -737,22 +851,18 @@ public class DashboardController implements Initializable {
             if(h_m[0].length()==1){
                 h = Integer.valueOf(h_m[0]);
                 hh = "0" + String.valueOf(h); 
-                System.out.println("1 ok");
             }else{
                 h = Integer.valueOf(h_m[0]); 
                 if(h<0 || h>23) throw new Exception();
                 hh = h> 9? String.valueOf(h): ("0" + String.valueOf(h)) ;
-                System.out.println("11 ok");
             }
             if(h_m[1].length()==1){
                 m = Integer.valueOf(h_m[1]);
                 mm = "0" + String.valueOf(m);
-                System.out.println("2 ok"); 
             }else{
                 m = Integer.valueOf(h_m[1]); 
                 if(m<0 || h>59) throw new Exception();
                 mm = m> 9? String.valueOf(m): ("0" + String.valueOf(m)) ;
-                System.out.println("21 ok");
             }
             value = hh + "h" + mm;
             
@@ -761,6 +871,11 @@ public class DashboardController implements Initializable {
         }
         return value;
     }
+    
+    //#########################################################
+    /**
+     * Class interne de gestion de cellule
+     */
     
     class EditingCell extends TableCell<Water_reseau, Double>{
         private TextField textField;
@@ -778,7 +893,8 @@ public class DashboardController implements Initializable {
             setGraphic(textField);
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             textField.selectAll();
-        }@Override
+        }
+        @Override
         public void cancelEdit() {
             super.cancelEdit();
 

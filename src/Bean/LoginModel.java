@@ -113,6 +113,10 @@ public class LoginModel {
         }     
         
     }
+    
+    /***
+     * Managing Reseau
+     */
     public void Get_Reseaux(){
         PreparedStatement pr = null;
         ResultSet rs = null;
@@ -134,6 +138,73 @@ public class LoginModel {
             e.printStackTrace();
         }  
     }
+    /**
+     * cette methode permet d'ajouter un reseau dans une station
+     * dans la base de données
+     * @param reseau
+     * @return 
+     */
+    public boolean addReseau(Reseau reseau){        
+        PreparedStatement pr = null;
+        String sql = "INSERT INTO Reseaux(ID_Station, Nom_Reseau) VALUES(?,?)";
+        try { 
+            pr = this.connection.prepareStatement(sql);
+            pr.setString(1, reseau.getId_Station());    
+            pr.setString(2, reseau.getNom());     
+            
+            pr.executeUpdate();
+            pr.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } 
+    }
+    /**
+     * cette methode permet d'ajouter un reseau dans une station
+     * dans la base de données
+     * @param reseau
+     * @return 
+     */
+    public boolean Modify_Reseau(String old_Name, String new_Name){  
+        PreparedStatement pr = null;
+
+        String sql = "UPDATE Reseaux SET Nom_Reseau = ? WHERE Nom_Reseau = ?";
+        try { 
+            pr = this.connection.prepareStatement(sql);    
+            pr.setString(1, old_Name);
+            pr.setString(2, new_Name);
+
+            pr.executeUpdate();
+            pr.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } 
+    }
+    /**
+     * cette methode permet d'elever un reseau dans une station
+     * dans la base de données
+     * @param reseau
+     * @return 
+     */
+    public boolean Remove_Reseau(Reseau reseau){        
+        PreparedStatement pr = null;
+        String sql = "DELETE FROM Reseaux WHERE Nom_Reseau = ?";
+        try {             
+            pr = this.connection.prepareStatement(sql);
+            pr.setString(1, reseau.getNom()); 
+            pr.executeUpdate();            
+            pr.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } 
+    }
+    
+    
     public boolean isCreated(String ID_Station, String Nom, String Prenom, String Postnom, String Password, String Username){
         PreparedStatement pr = null;
         
@@ -304,6 +375,11 @@ public class LoginModel {
     
     
     private ObservableMap<String, Rapport> List_Rapport = FXCollections.observableHashMap();
+    /**
+     * this method allow to get all rapport according this ID station
+     * @param Id_statiton
+     * @return 
+     */
     public ObservableMap<String, Rapport>  getRapport(String Id_statiton){        
         PreparedStatement pr = null, pr_2 = null;
         ResultSet rs = null, rs_2 = null;

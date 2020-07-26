@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,7 +44,9 @@ public class ConnectionController implements Initializable {
             if(Data.R.loginModel.isLogin(this.Username.getText(), 
                     this.password.getText())){
                 id_station = Data.R.loginModel.get_Id_Station(this.Username.getText(), this.password.getText());
+                Data.R.string_properties.get(Data.S.Str_Prop_Current_Id_Station).set(id_station);
                 Data.R.Current_Reseau.clear();
+                // recover all reseau
                 Data.R.Reseaux.forEach(x->{
                     if(x.getId_Station().equals(id_station)){
                         Data.R.Current_Reseau.add(x);
@@ -96,6 +99,12 @@ public class ConnectionController implements Initializable {
             Bar.getScene().getWindow().setX(e.getScreenX()-xoffset);
             Bar.getScene().getWindow().setY(e.getScreenY()-yoffset);
         });
+        
+        /**
+         * Utilities
+         */
+        SimpleStringProperty Current_Id_Station = new SimpleStringProperty();
+        Data.R.string_properties.put(Data.S.Str_Prop_Current_Id_Station, Current_Id_Station);
     }    
     
 }
