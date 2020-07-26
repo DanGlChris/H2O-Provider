@@ -49,6 +49,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 
@@ -229,6 +230,9 @@ public class DashboardController implements Initializable {
     Section: Gestion reseau
     */
     @FXML
+    public JFXButton btn_Modify;
+    
+    @FXML
     public JFXButton btn_Supprimer_reseau;
     
     @FXML
@@ -244,12 +248,14 @@ public class DashboardController implements Initializable {
     public TextField TxtF_Id_Station;
 
     @FXML
-    public TextField TxtF_Nom_Station;
+    public TextField TxtF_Nom_Reseau;
     
     
     @FXML
     public void Deconnexion(ActionEvent event) {
         Hide_All_Page();
+        close_rapport(event);
+        nom_reseau.setText(Data.S.Str_Nom_Reseau_Default);
         Data.M.Change_Stage(Data.R.stages.get(Data.S.Stge_Dashboard), Data.R.stages.get(Data.S.Scne_Accueil), true);
     }    
 
@@ -389,13 +395,14 @@ public class DashboardController implements Initializable {
         data.clear();
         data_justification.clear();
     }
-    private boolean pass_reseau_name = true;
+    private boolean pass_reseau_name = true;    //utility
     @FXML
     public void Creer_Reseau(ActionEvent event){
         Message_Reseau.setText("");
         pass_reseau_name = true;
         for(Reseau res: Data.R.Reseaux){
-            if(res.getNom().toUpperCase().equals(TxtF_Nom_Station.getText().toUpperCase())){
+            if(res.getNom().toUpperCase().equals(TxtF_Nom_Reseau.getText().toUpperCase())){
+                Message_Reseau.setTextFill(Color.web(Data.S.Col_Red_Message_Error));
                 Message_Reseau.setText(Data.S.Str_Message_error_reseau);
                 pass_reseau_name = false;
                 break;
@@ -407,14 +414,15 @@ public class DashboardController implements Initializable {
         if(pass_reseau_name){
             System.out.println("#### je suis passé");
             Reseau new_reseau = new Reseau(Data.R.string_properties.get(Data.S.Str_Prop_Current_Id_Station).get(),
-                    TxtF_Nom_Station.getText().toUpperCase().charAt(0)+TxtF_Nom_Station.getText().toLowerCase().substring(1));
+                    TxtF_Nom_Reseau.getText().toUpperCase().charAt(0)+TxtF_Nom_Reseau.getText().toLowerCase().substring(1));
             new_reseau.Desactive();
             Data.R.loginModel.addReseau(new_reseau);
             Data.R.Current_Reseau.add(new_reseau);
             Data.R.Reseaux.add(new_reseau);
             
+            Message_Reseau.setTextFill(Color.web(Data.S.Col_Green_Message_Success));
             Message_Reseau.setText(Data.S.Str_Message_new_reseau);
-            TxtF_Nom_Station.clear();
+            TxtF_Nom_Reseau.clear();
         }
         
         
@@ -425,6 +433,7 @@ public class DashboardController implements Initializable {
         Hide_All_Page_except(Nouveau_Res);
         btn_creer.setVisible(true);
         btn_Modifier_Res.setVisible(false);
+        TxtF_Nom_Reseau.clear();
 
     }
     
@@ -440,16 +449,41 @@ public class DashboardController implements Initializable {
         Data.R.loginModel.Remove_Reseau(removable_reseau);
         Data.R.Reseaux.remove(removable_reseau);
         Data.R.Current_Reseau.remove(removable_reseau);
+        TxtF_Nom_Reseau.clear();
     }
     @FXML
     public void modifier_reseau(ActionEvent event) {
+        Hide_All_Page_except(Nouveau_Res);
         btn_creer.setVisible(false);
         btn_Modifier_Res.setVisible(true);
+        TxtF_Nom_Reseau.setText(Paneau_reseaux.getSelectionModel().selectedItemProperty().get().getNom());
+        
     }
     
     @FXML
     public void Set_Reseau(ActionEvent event) {
-
+        Message_Reseau.setText("");
+        pass_reseau_name = true;
+        for(Reseau res: Data.R.Reseaux){
+            if(res.getNom().toUpperCase().equals(TxtF_Nom_Reseau.getText().toUpperCase())){
+                Message_Reseau.setText(Data.S.Str_Message_error_reseau);
+                pass_reseau_name = false;
+                break;
+            }
+        }
+        /**
+         * save on DataBase and Current view table
+         */
+        if(pass_reseau_name){
+            System.out.println("#### je suis passé");
+            Data.R.loginModel.Modify_Reseau(Paneau_reseaux.getSelectionModel().selectedItemProperty().get().getNom(),
+                    TxtF_Nom_Reseau.getText());
+            Paneau_reseaux.getSelectionModel().selectedItemProperty().get().setNom(TxtF_Nom_Reseau.getText());
+            
+            Message_Reseau.setTextFill(Color.web(Data.S.Col_Green_Message_Success));
+            Message_Reseau.setText(Data.S.Str_Message_modify_reseau);
+            TxtF_Nom_Reseau.clear();
+        }
     }
     
     @FXML
@@ -479,14 +513,15 @@ public class DashboardController implements Initializable {
         btn_add_justif.disableProperty().bind(btn_add_line.disabledProperty());
         btn_ouvr_rap.disableProperty().bindBidirectional(btn_sup_rap.disableProperty());
         btn_ouvr_rap.disableProperty().set(true);
-        btn_Modifier_Res.disableProperty().set(true);
+        btn_Modify.disableProperty().set(true); //modify on list
         btn_Supprimer_reseau.disableProperty().set(true);
         Btn_print.disableProperty().set(true);
         Btn_Enreigistrer.disableProperty().set(true);
         
-        btn_creer.disableProperty().bind(TxtF_Nom_Station.textProperty().isEmpty());
+        btn_creer.disableProperty().bind(TxtF_Nom_Reseau.textProperty().isEmpty());
         btn_creer.setVisible(true);
         btn_Modifier_Res.setVisible(false);
+        btn_Modifier_Res.disableProperty().bind(TxtF_Nom_Reseau.textProperty().isEmpty());
         
         TxtF_Id_Station.textProperty().bind(Data.R.string_properties.get(Data.S.Str_Prop_Current_Id_Station));
         Page_List.add(Rapport_page);
@@ -527,7 +562,7 @@ public class DashboardController implements Initializable {
                 nom_reseau.setText(Reseau_actif);
                 Btn_Enreigistrer.setDisable(false);
                 btn_Supprimer_reseau.setDisable(false);
-                btn_Modifier_Res.setDisable(false);
+                btn_Modify.setDisable(false);
             }
             else{
                 Paneau_reseaux.getItems().forEach(x-> {
@@ -535,8 +570,10 @@ public class DashboardController implements Initializable {
                 });
                 Btn_Enreigistrer.setDisable(true);
                 btn_Supprimer_reseau.setDisable(true);
-                btn_Modifier_Res.setDisable(false); 
+                btn_Modify.setDisable(true);
             }
+            Hide_All_Page_except(Rapport_page);
+            Message_Reseau.setText("");
         });
         Bar.setOnMousePressed(e-> {
             xoffset = e.getSceneX();

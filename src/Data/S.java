@@ -10,6 +10,10 @@ package Data;
  * @author HP
  */
 public interface S {
+    //Color RGB
+    String Col_Green_Message_Success = "#17C67E";
+    String Col_Red_Message_Error = "#FF0000";
+    
     //StringPropretie
     String Str_Prop_Agent_Name = "Agent_Name";
     String Str_Prop_Current_Id_Station = "Current_ID_Station";
@@ -29,6 +33,10 @@ public interface S {
     /**
      * Direct Using
      */
+    
+    String  Str_Nom_Reseau_Default = "Aucun Réseau";
     String Str_Message_error_reseau = "Ce Réseau a déja été enreigistré!";
     String Str_Message_new_reseau = "Le Réseau a été correctement enreigistré!";
+    String Str_Message_modify_reseau = "Le Réseau a été correctement Modifié!";
+    
 }

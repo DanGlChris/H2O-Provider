@@ -52,7 +52,7 @@
                               <JFXListView fx:id="Paneau_reseaux" prefHeight="90.0" prefWidth="197.0" />
                               <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="Gestion Station" />
                               <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="86.0" maxWidth="-Infinity" onAction="#Nouveau_reseau" prefHeight="35.0" prefWidth="200.0" text="Nouveau Réseau" />
-                              <JFXButton ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="240.0" maxWidth="-Infinity" onAction="#modifier_reseau" prefHeight="35.0" prefWidth="200.0" text="Modifier Réseau" />
+                              <JFXButton fx:id="btn_Modify" ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="240.0" maxWidth="-Infinity" onAction="#modifier_reseau" prefHeight="35.0" prefWidth="200.0" text="Modifier Réseau" />
                               <JFXButton fx:id="btn_Supprimer_reseau" ellipsisString="" focusTraversable="false" layoutX="10.0" layoutY="278.0" maxWidth="-Infinity" onAction="#supprimer_reseau" prefHeight="35.0" prefWidth="200.0" text="Supprimer Réseau" />
                               <Label alignment="CENTER" ellipsisString="" prefHeight="25.0" prefWidth="230.0" text="A propos" />
                               <JFXButton ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#infos" prefHeight="35.0" prefWidth="200.0" text="Infos" />
@@ -213,7 +213,7 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="TxtF_Id_Station" disable="true" layoutX="257.0" layoutY="34.0" />
-                                          <TextField fx:id="TxtF_Nom_Station" layoutX="257.0" layoutY="87.0" />
+                                          <TextField fx:id="TxtF_Nom_Reseau" layoutX="257.0" layoutY="87.0" />
                                        </children>
                                     </AnchorPane>
                                     <JFXButton fx:id="btn_creer" ellipsisString="" focusTraversable="false" maxWidth="-Infinity" onAction="#Creer_Reseau" prefHeight="35.0" prefWidth="200.0" text="Créer" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="17.0" />

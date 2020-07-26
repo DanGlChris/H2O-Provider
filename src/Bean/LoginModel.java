@@ -172,11 +172,13 @@ public class LoginModel {
         String sql = "UPDATE Reseaux SET Nom_Reseau = ? WHERE Nom_Reseau = ?";
         try { 
             pr = this.connection.prepareStatement(sql);    
-            pr.setString(1, old_Name);
-            pr.setString(2, new_Name);
+            pr.setString(1, new_Name);
+            pr.setString(2, old_Name);
+            System.out.println("##### " + old_Name + " - " + new_Name);
 
             pr.executeUpdate();
             pr.close();
+            System.out.println("##### Modification OK");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

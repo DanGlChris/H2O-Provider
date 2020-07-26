@@ -28,7 +28,8 @@ public class Reseau extends AnchorPane{
         this.setWidth(100);
         this.setHeight(12);
         
-        label = new Label(nom);
+        label = new Label();
+        label.textProperty().bind(this.nom);
         this.getChildren().add(label);
         AnchorPane.setTopAnchor(label, 0.0);
         AnchorPane.setBottomAnchor(label, 0.0);
@@ -59,5 +60,8 @@ public class Reseau extends AnchorPane{
 
     public String getNom() {
         return nom.get();
+    }
+    public void setNom(String nom){
+        this.nom.set(nom);
     }
 }
